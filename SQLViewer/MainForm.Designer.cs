@@ -67,6 +67,7 @@
             this.cbDatabases.Name = "cbDatabases";
             this.cbDatabases.Size = new System.Drawing.Size(226, 21);
             this.cbDatabases.TabIndex = 1;
+            this.cbDatabases.SelectedIndexChanged += new System.EventHandler(this.cbDatabases_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -84,6 +85,7 @@
             this.lbTables.Name = "lbTables";
             this.lbTables.Size = new System.Drawing.Size(226, 238);
             this.lbTables.TabIndex = 3;
+            this.lbTables.SelectedIndexChanged += new System.EventHandler(this.lbTables_SelectedIndexChanged);
             // 
             // lbTableColumns
             // 
@@ -126,6 +128,7 @@
             this.lbViews.Name = "lbViews";
             this.lbViews.Size = new System.Drawing.Size(226, 238);
             this.lbViews.TabIndex = 7;
+            this.lbViews.SelectedIndexChanged += new System.EventHandler(this.lbViews_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -169,6 +172,7 @@
             this.lbProcedures.Name = "lbProcedures";
             this.lbProcedures.Size = new System.Drawing.Size(226, 238);
             this.lbProcedures.TabIndex = 11;
+            this.lbProcedures.SelectedIndexChanged += new System.EventHandler(this.lbProcedures_SelectedIndexChanged);
             // 
             // label9
             // 
