@@ -51,6 +51,11 @@ namespace SQLViewer
             lbProcedureParameters.DataSource = (lbProcedures.SelectedItem as Procedure).ProcedureParameters;
         }
 
+        private void btnOpenQueryExecutionForm_Click(object sender, EventArgs e)
+        {
+            new QueryExecutionForm().Show();
+        }
+
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();

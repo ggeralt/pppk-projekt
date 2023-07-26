@@ -1,5 +1,6 @@
 ﻿using SQLViewer.Model;
 using System.Collections.Generic;
+using System.Data;
 
 namespace SQLViewer.DAL
 {
@@ -11,5 +12,6 @@ namespace SQLViewer.DAL
         IEnumerable<ProcedureParameter> GetProcedureParameters(Procedure procedure);
         IEnumerable<Procedure> GetProcedures(Database database);
         void LogIn(string server, string username, string password);
+        DataSet Execute(string query);
     }
 }

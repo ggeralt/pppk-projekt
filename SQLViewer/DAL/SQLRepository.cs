@@ -1,5 +1,6 @@
 ﻿using SQLViewer.Model;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace SQLViewer.DAL
@@ -145,6 +146,25 @@ namespace SQLViewer.DAL
                             };
                         }
                     }
+                }
+            }
+        }
+
+        public DataSet Execute(string query)
+        {
+            using (SqlConnection sqlConnection = new SqlConnection(cs))
+            {
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
+                sqlConnection.Open();
+                using (SqlCommand sqlCommand = sqlConnection.CreateCommand())
+                {
+                    sqlCommand.CommandText = query;
+                    sqlDataAdapter.SelectCommand = sqlCommand;
+
+                    DataSet dataSet = new DataSet();
+                    sqlDataAdapter.Fill(dataSet);
+
+                    return dataSet;
                 }
             }
         }
