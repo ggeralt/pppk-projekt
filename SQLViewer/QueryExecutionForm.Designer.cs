@@ -73,13 +73,13 @@
             // btnExecute
             // 
             this.btnExecute.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExecute.Location = new System.Drawing.Point(1118, 531);
+            this.btnExecute.Location = new System.Drawing.Point(1118, 407);
             this.btnExecute.Name = "btnExecute";
             this.btnExecute.Size = new System.Drawing.Size(134, 138);
             this.btnExecute.TabIndex = 6;
             this.btnExecute.Text = "EXECUTE";
             this.btnExecute.UseVisualStyleBackColor = true;
-            this.btnExecute.Click += new System.EventHandler(this.btnExecute_Click);
+            this.btnExecute.Click += new System.EventHandler(this.BtnExecute_Click);
             // 
             // tbQuery
             // 
@@ -87,7 +87,7 @@
             this.tbQuery.Location = new System.Drawing.Point(12, 133);
             this.tbQuery.Multiline = true;
             this.tbQuery.Name = "tbQuery";
-            this.tbQuery.Size = new System.Drawing.Size(1232, 246);
+            this.tbQuery.Size = new System.Drawing.Size(1240, 246);
             this.tbQuery.TabIndex = 5;
             // 
             // cbDatabases

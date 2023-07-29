@@ -44,10 +44,10 @@
             this.lbProcedures = new System.Windows.Forms.ListBox();
             this.label9 = new System.Windows.Forms.Label();
             this.tbProcedureDefinitions = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnXMLTable = new System.Windows.Forms.Button();
+            this.btnSelectTable = new System.Windows.Forms.Button();
+            this.btnSelectView = new System.Windows.Forms.Button();
+            this.btnXMLView = new System.Windows.Forms.Button();
             this.btnOpenQueryExecutionForm = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -68,7 +68,7 @@
             this.cbDatabases.Name = "cbDatabases";
             this.cbDatabases.Size = new System.Drawing.Size(226, 21);
             this.cbDatabases.TabIndex = 1;
-            this.cbDatabases.SelectedIndexChanged += new System.EventHandler(this.cbDatabases_SelectedIndexChanged);
+            this.cbDatabases.SelectedIndexChanged += new System.EventHandler(this.CbDatabases_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -86,7 +86,7 @@
             this.lbTables.Name = "lbTables";
             this.lbTables.Size = new System.Drawing.Size(226, 238);
             this.lbTables.TabIndex = 3;
-            this.lbTables.SelectedIndexChanged += new System.EventHandler(this.lbTables_SelectedIndexChanged);
+            this.lbTables.SelectedIndexChanged += new System.EventHandler(this.LbTables_SelectedIndexChanged);
             // 
             // lbTableColumns
             // 
@@ -129,7 +129,7 @@
             this.lbViews.Name = "lbViews";
             this.lbViews.Size = new System.Drawing.Size(226, 238);
             this.lbViews.TabIndex = 7;
-            this.lbViews.SelectedIndexChanged += new System.EventHandler(this.lbViews_SelectedIndexChanged);
+            this.lbViews.SelectedIndexChanged += new System.EventHandler(this.LbViews_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -173,7 +173,7 @@
             this.lbProcedures.Name = "lbProcedures";
             this.lbProcedures.Size = new System.Drawing.Size(226, 238);
             this.lbProcedures.TabIndex = 11;
-            this.lbProcedures.SelectedIndexChanged += new System.EventHandler(this.lbProcedures_SelectedIndexChanged);
+            this.lbProcedures.SelectedIndexChanged += new System.EventHandler(this.LbProcedures_SelectedIndexChanged);
             // 
             // label9
             // 
@@ -192,41 +192,45 @@
             this.tbProcedureDefinitions.Size = new System.Drawing.Size(547, 238);
             this.tbProcedureDefinitions.TabIndex = 18;
             // 
-            // button1
+            // btnXMLTable
             // 
-            this.button1.Location = new System.Drawing.Point(261, 315);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "<-- XML";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnXMLTable.Location = new System.Drawing.Point(261, 315);
+            this.btnXMLTable.Name = "btnXMLTable";
+            this.btnXMLTable.Size = new System.Drawing.Size(75, 23);
+            this.btnXMLTable.TabIndex = 19;
+            this.btnXMLTable.Text = "<-- XML";
+            this.btnXMLTable.UseVisualStyleBackColor = true;
+            this.btnXMLTable.Click += new System.EventHandler(this.BtnXMLClick);
             // 
-            // button2
+            // btnSelectTable
             // 
-            this.button2.Location = new System.Drawing.Point(261, 344);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 20;
-            this.button2.Text = "<-- SELECT";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnSelectTable.Location = new System.Drawing.Point(261, 344);
+            this.btnSelectTable.Name = "btnSelectTable";
+            this.btnSelectTable.Size = new System.Drawing.Size(75, 23);
+            this.btnSelectTable.TabIndex = 20;
+            this.btnSelectTable.Text = "<-- SELECT";
+            this.btnSelectTable.UseVisualStyleBackColor = true;
+            this.btnSelectTable.Click += new System.EventHandler(this.BtnSelectClick);
             // 
-            // button3
+            // btnSelectView
             // 
-            this.button3.Location = new System.Drawing.Point(901, 344);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 22;
-            this.button3.Text = "<-- SELECT";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnSelectView.Location = new System.Drawing.Point(901, 344);
+            this.btnSelectView.Name = "btnSelectView";
+            this.btnSelectView.Size = new System.Drawing.Size(75, 23);
+            this.btnSelectView.TabIndex = 22;
+            this.btnSelectView.Text = "<-- SELECT";
+            this.btnSelectView.UseVisualStyleBackColor = true;
+            this.btnSelectView.Click += new System.EventHandler(this.BtnSelectClick);
             // 
-            // button4
+            // btnXMLView
             // 
-            this.button4.Location = new System.Drawing.Point(901, 315);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 21;
-            this.button4.Text = "<-- XML";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnXMLView.Location = new System.Drawing.Point(901, 315);
+            this.btnXMLView.Name = "btnXMLView";
+            this.btnXMLView.Size = new System.Drawing.Size(75, 23);
+            this.btnXMLView.TabIndex = 21;
+            this.btnXMLView.Text = "<-- XML";
+            this.btnXMLView.UseVisualStyleBackColor = true;
+            this.btnXMLView.Click += new System.EventHandler(this.BtnXMLClick);
             // 
             // btnOpenQueryExecutionForm
             // 
@@ -236,7 +240,7 @@
             this.btnOpenQueryExecutionForm.TabIndex = 23;
             this.btnOpenQueryExecutionForm.Text = "QUERY EXECUTION";
             this.btnOpenQueryExecutionForm.UseVisualStyleBackColor = true;
-            this.btnOpenQueryExecutionForm.Click += new System.EventHandler(this.btnOpenQueryExecutionForm_Click);
+            this.btnOpenQueryExecutionForm.Click += new System.EventHandler(this.BtnOpenQueryExecutionForm_Click);
             // 
             // MainForm
             // 
@@ -245,10 +249,10 @@
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.btnOpenQueryExecutionForm);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnSelectView);
+            this.Controls.Add(this.btnXMLView);
+            this.Controls.Add(this.btnSelectTable);
+            this.Controls.Add(this.btnXMLTable);
             this.Controls.Add(this.tbProcedureDefinitions);
             this.Controls.Add(this.lbProcedureParameters);
             this.Controls.Add(this.label6);
@@ -293,10 +297,10 @@
         private System.Windows.Forms.ListBox lbProcedures;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox tbProcedureDefinitions;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnXMLTable;
+        private System.Windows.Forms.Button btnSelectTable;
+        private System.Windows.Forms.Button btnSelectView;
+        private System.Windows.Forms.Button btnXMLView;
         private System.Windows.Forms.Button btnOpenQueryExecutionForm;
     }
 }

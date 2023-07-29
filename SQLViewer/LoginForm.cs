@@ -11,7 +11,7 @@ namespace SQLViewer
             InitializeComponent();
         }
 
-        private void btnLogIn_Click(object sender, System.EventArgs e)
+        private void BtnLogIn_Click(object sender, System.EventArgs e)
         {
             try
             {

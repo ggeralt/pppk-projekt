@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace SQLViewer
 {
@@ -19,9 +20,10 @@ namespace SQLViewer
             cbDatabases.DataSource = new List<Database>(RepositoryFactory.GetRepository().GetDatabases());
         }
 
-        private void btnExecute_Click(object sender, EventArgs e)
+        private void BtnExecute_Click(object sender, EventArgs e)
         {
             tbResult.Controls.Clear();
+            tbMessage.Controls.Clear();
 
             string query = $"USE {cbDatabases.SelectedItem}" + "\n" + tbQuery.Text.Trim();
             DataGrid dataGrid = new DataGrid();
@@ -29,18 +31,19 @@ namespace SQLViewer
             try
             {
                 TextBox textBox = new TextBox();
+                DataSet dataSet = RepositoryFactory.GetRepository().Execute(query);
+
                 textBox.Width = tbResult.Width;
                 textBox.Height = tbResult.Height;
                 textBox.Enabled = false;
 
-                DataSet dataSet = RepositoryFactory.GetRepository().Execute(query);
                 foreach (DataTable dataTable in dataSet.Tables)
                 {
                     dataGrid.DataSource = dataTable;
                     dataGrid.Height = tbResult.Height;
                     dataGrid.Width = tbResult.Width;
                     tbResult.Controls.Add(dataGrid);
-                    textBox.Text = $"{dataTable.Rows.Count} rows affected \n Completion time: {DateTime.Now}";
+                    textBox.Text = $"{dataTable.Rows.Count} rows affected. Completion time: {DateTime.Now}";
                     tbMessage.Controls.Add(textBox);
                 }
             }

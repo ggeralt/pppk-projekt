@@ -168,5 +168,27 @@ namespace SQLViewer.DAL
                 }
             }
         }
+
+        public DataSet CreateDataSet(DatabaseEntity databaseEntity)
+        {
+            using (SqlConnection sqlConnection = new SqlConnection(cs))
+            {
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(
+                    string.Format(
+                        SelectQuery,
+                        databaseEntity.Database.Name,
+                        databaseEntity.Schema,
+                        databaseEntity.Name
+                    ), 
+                    sqlConnection
+                );
+                DataSet dataSet = new DataSet(databaseEntity.Name);
+
+                sqlDataAdapter.Fill(dataSet);
+                dataSet.Tables[0].TableName = databaseEntity.Name;
+
+                return dataSet;
+            }
+        }
     }
 }
