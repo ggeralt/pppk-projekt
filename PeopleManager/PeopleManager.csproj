@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,7 +59,16 @@
     <Compile Include="DAL\IRepository.cs" />
     <Compile Include="DAL\RepositoryFactory.cs" />
     <Compile Include="DAL\SQLRepository.cs" />
+    <Compile Include="ListPeoplePage.xaml.cs">
+      <DependentUpon>ListPeoplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utility\ImageUtilities.cs" />
+    <Compile Include="ViewModel\PersonViewModel.cs" />
+    <Compile Include="View\FramedPage.cs" />
+    <Page Include="ListPeoplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

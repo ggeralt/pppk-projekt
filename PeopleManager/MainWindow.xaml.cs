@@ -10,6 +10,7 @@ namespace PeopleManager
         public MainWindow()
         {
             InitializeComponent();
+            Frame.Navigate(new ListPeoplePage(new ViewModel.PersonViewModel()) { Frame = Frame });
         }
     }
 }

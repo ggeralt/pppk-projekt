@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.Data.SqlClient;
+using System.IO;
 using System.Windows.Media.Imaging;
 
 namespace PeopleManager.Utility
@@ -28,6 +30,30 @@ namespace PeopleManager.Utility
             {
                 jpegEncoder.Save(memoryStream);
                 return memoryStream.ToArray();
+            }
+        }
+
+        internal static byte[] ByteArrayFromSqlDataReader(SqlDataReader sqlDataReader, int column)
+        {
+            int currentBytes = 0;
+            int bufferSize = 1024;
+            byte[] buffer = new byte[bufferSize];
+
+            using (var memoryStream = new MemoryStream())
+            {
+                using (var binaryWriter = new BinaryWriter(memoryStream))
+                {
+                    int readBytes;
+
+                    do
+                    {
+                        readBytes = (int)sqlDataReader.GetBytes(column, currentBytes, buffer, 0, bufferSize);
+                        binaryWriter.Write(buffer, 0, readBytes);
+                        currentBytes += readBytes;
+                    } while (readBytes == bufferSize);
+
+                    return memoryStream.ToArray();
+                }
             }
         }
     }
