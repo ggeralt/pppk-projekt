@@ -16,7 +16,7 @@ namespace PeopleManager.DAL
         private const string AgeParameter = "@age";
         private const string EmailParameter = "@email";
         private const string PictureParameter = "@picture";
-        private static string cs = ConfigurationManager.ConnectionStrings["cs_"].ConnectionString;
+        private static string cs = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
 
         public void AddPerson(Person person)
         {

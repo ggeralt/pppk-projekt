@@ -70,17 +70,14 @@
         <Button x:Name="BtnAdd" 
                 Foreground="WhiteSmoke" 
                 Background="Green" 
-                Click="BtnAdd_Click" 
-                Content="Add" HorizontalAlignment="Left" Margin="385,411,0,0" VerticalAlignment="Top" Height="29" Width="100" />
+                Content="Add" HorizontalAlignment="Left" Margin="385,411,0,0" VerticalAlignment="Top" Height="29" Width="100" Click="BtnAdd_Click" />
         <Button x:Name="BtnEdit" 
                 Foreground="Black" 
                 Background="Yellow" 
-                Click="BtnEdit_Click"
-                Content="Edit" HorizontalAlignment="Left" Margin="490,411,0,0" VerticalAlignment="Top" Height="29" Width="100"/>
+                Content="Edit" HorizontalAlignment="Left" Margin="490,411,0,0" VerticalAlignment="Top" Height="29" Width="100" Click="BtnEdit_Click"/>
         <Button x:Name="BtnDelete" 
                 Foreground="WhiteSmoke" 
                 Background="Red" 
-                Click="BtnDelete_Click"
-                Content="Delete" HorizontalAlignment="Left" Margin="280,411,0,0" VerticalAlignment="Top" Height="29" Width="100"/>
+                Content="Delete" HorizontalAlignment="Left" Margin="280,411,0,0" VerticalAlignment="Top" Height="29" Width="100" Click="BtnDelete_Click"/>
     </Grid>
 </local:FramedPage>

@@ -1,4 +1,5 @@
-﻿using PeopleManager.View;
+﻿using PeopleManager.Model;
+using PeopleManager.View;
 using PeopleManager.ViewModel;
 
 namespace PeopleManager
@@ -14,19 +15,25 @@ namespace PeopleManager
             lvPeople.ItemsSource = personViewModel.People;
         }
 
+        private void BtnDelete_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (lvPeople.SelectedItems != null)
+            {
+                PersonViewModel.People.Remove(lvPeople.SelectedItem as Person);
+            }
+        }
+
         private void BtnAdd_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
+            Frame.Navigate(new EditPersonPage(PersonViewModel));
         }
 
         private void BtnEdit_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
-        }
-
-        private void BtnDelete_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
+            if (lvPeople.SelectedItems != null)
+            {
+                Frame.Navigate(new EditPersonPage(PersonViewModel, lvPeople.SelectedItem as Person));
+            }
         }
     }
 }

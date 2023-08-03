@@ -59,12 +59,19 @@
     <Compile Include="DAL\IRepository.cs" />
     <Compile Include="DAL\RepositoryFactory.cs" />
     <Compile Include="DAL\SQLRepository.cs" />
+    <Compile Include="EditPersonPage.xaml.cs">
+      <DependentUpon>EditPersonPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ListPeoplePage.xaml.cs">
       <DependentUpon>ListPeoplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utility\ImageUtilities.cs" />
     <Compile Include="ViewModel\PersonViewModel.cs" />
     <Compile Include="View\FramedPage.cs" />
+    <Page Include="EditPersonPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ListPeoplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
