@@ -1,5 +1,6 @@
 package hr.algebra.model;
 
+import hr.algebra.dao.sql.HibernateFactory;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -17,7 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "Person")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Person.findAll", query = "SELECT p FROM Person p")
+    @NamedQuery(name = HibernateFactory.SELECT_PEOPLE, query = "SELECT p FROM Person p")
     , @NamedQuery(name = "Person.findByIDPerson", query = "SELECT p FROM Person p WHERE p.iDPerson = :iDPerson")
     , @NamedQuery(name = "Person.findByFirstName", query = "SELECT p FROM Person p WHERE p.firstName = :firstName")
     , @NamedQuery(name = "Person.findByLastName", query = "SELECT p FROM Person p WHERE p.lastName = :lastName")
@@ -27,9 +28,9 @@ public class Person implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "IDPerson")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer iDPerson;
     @Basic(optional = false)
     @Column(name = "FirstName")
@@ -60,6 +61,10 @@ public class Person implements Serializable {
         this.lastName = lastName;
         this.age = age;
         this.email = email;
+    }
+    
+    public Person(Person data) {
+        updateDetails(data);
     }
 
     public Integer getIDPerson() {
@@ -108,6 +113,14 @@ public class Person implements Serializable {
 
     public void setPicture(byte[] picture) {
         this.picture = picture;
+    }
+
+    public void updateDetails(Person data) {
+        firstName = data.firstName;
+        lastName = data.lastName;
+        age = data.age;
+        email = data.email;
+        picture = data.picture;
     }
 
     @Override

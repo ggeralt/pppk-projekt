@@ -1,5 +1,6 @@
 package hr.algebra;
 
+import hr.algebra.dao.RepositoryFactory;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +21,12 @@ public class PersonManagerApplication extends Application {
         primaryStage.show();
     }
 
+    @Override
+    public void stop() throws Exception {
+        super.stop();
+        RepositoryFactory.getRepository().release();
+    }
+    
     public static void main(String[] args) {
         launch(args);
     }
