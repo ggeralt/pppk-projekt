@@ -1,6 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using Todo.DAO;
+using Todo.Models;
 
 namespace Todo.Controllers
 {
@@ -15,10 +17,8 @@ namespace Todo.Controllers
         }
 
         // GET: Item/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+        public async Task<ActionResult> Details(string id)
+            => await ShowItem(id);
 
         // GET: Item/Create
         public ActionResult Create()
@@ -28,62 +28,62 @@ namespace Todo.Controllers
 
         // POST: Item/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public async Task<ActionResult> Create(Item item)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                item.Id = Guid.NewGuid().ToString();
+                await cosmosDbService.AddItemAsync(item);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(item);
         }
 
         // GET: Item/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+        public async Task<ActionResult> Edit(string id)
+            => await ShowItem(id);
 
         // POST: Item/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public async Task<ActionResult> Edit(Item item)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
+                await cosmosDbService.UpdateItemAsync(item);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(item);
         }
 
         // GET: Item/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+        public async Task<ActionResult> Delete(string id)
+            => await ShowItem(id);
 
         // POST: Item/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public async Task<ActionResult> Delete(Item item)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            await cosmosDbService.DeleteItemAsync(item);
+            return RedirectToAction("Index");
+        }
 
-                return RedirectToAction("Index");
-            }
-            catch
+        private async Task<ActionResult> ShowItem(string id)
+        {
+            if (id == null)
             {
-                return View();
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
             }
+
+            var item = await cosmosDbService.GetItemAsync(id);
+
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(item);
         }
     }
 }
