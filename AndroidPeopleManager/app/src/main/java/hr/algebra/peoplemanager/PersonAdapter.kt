@@ -1,6 +1,8 @@
 package hr.algebra.peoplemanager
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,12 +12,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import hr.algebra.peoplemanager.dao.Person
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.File
 
 class PersonAdapter(
-        private val context: Context,
-        private val people: MutableList<Person>
-    ) : RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
+    private val context: Context,
+    private val people: MutableList<Person>,
+    private val navigableFragment: NavigableFragment
+) : RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val tvTitle = itemView.findViewById<TextView>(R.id.tvTitle)
@@ -41,14 +48,24 @@ class PersonAdapter(
 
     override fun getItemCount() = people.size
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemView.setOnLongClickListener {
-
+            navigableFragment.navigate(Bundle().apply {
+                putLong(PERSON_ID, people[position]._id!!)
+            })
             true
         }
 
         holder.ivDelete.setOnLongClickListener {
-
+            GlobalScope.launch(Dispatchers.Main) {
+                withContext(Dispatchers.IO) {
+                    (context?.applicationContext as App).getPersonDao().delete(people[position])
+                    File(people[position].picturePath).delete()
+                }
+                people.removeAt(position)
+                notifyDataSetChanged()
+            }
             true
         }
 
