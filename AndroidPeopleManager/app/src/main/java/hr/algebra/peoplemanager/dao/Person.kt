@@ -10,6 +10,7 @@ data class Person(
     var _id: Long? = null,
     var firstName: String? = null,
     var lastName: String? = null,
+    var title: String? = null,
     var picturePath: String? = null,
     var birthDate: LocalDate = LocalDate.now()
 ) {

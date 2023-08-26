@@ -90,6 +90,7 @@ class SecondFragment : Fragment() {
         binding.tvDate.text = person.birthDate.format(DateTimeFormatter.ISO_DATE)
         binding.etFirstName.setText(person.firstName ?: "")
         binding.etLastName.setText(person.lastName ?: "")
+        binding.etTitle.setText(person.title ?: "")
     }
 
     private fun setupListeners() {
@@ -126,6 +127,18 @@ class SecondFragment : Fragment() {
             }
 
             override fun afterTextChanged(p0: Editable?) {}
+        })
+
+        binding.etTitle.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                person.title = text?.toString()?.trim()
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+            }
         })
     }
 
@@ -181,7 +194,8 @@ class SecondFragment : Fragment() {
 
         arrayOf(
             binding.etFirstName,
-            binding.etLastName
+            binding.etLastName,
+            binding.etTitle
         ).forEach {
             if (it.text.trim().isBlank()) {
                 it.error = "Please insert"

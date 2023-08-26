@@ -90,6 +90,30 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/edit_margin_top">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="@dimen/edit_text_size"
+                android:text="@string/title"
+                android:textColor="?colorPrimary" />
+
+            <EditText
+                android:id="@+id/etTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:textSize="@dimen/edit_text_size"
+                tools:text="Title" />
+
+        </LinearLayout>
+
         <Button
             android:id="@+id/btnCommit"
             android:layout_width="wrap_content"

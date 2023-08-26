@@ -47,4 +47,5 @@
     <string name="first_name">First name</string>
     <string name="last_name">Last name</string>
     <string name="commit">COMMIT</string>
+    <string name="title">Title</string>
 </resources>
