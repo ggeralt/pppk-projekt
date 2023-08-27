@@ -5,6 +5,7 @@ import javax.persistence.Persistence;
 
 public class HibernateFactory {
     public static final String SELECT_PEOPLE = "Person.findAll";
+    public static final String SELECT_JOB = "Job.findAll";
     private static final String PERSISTENCE_UNIT = "PersonManagerPU";
     private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
     

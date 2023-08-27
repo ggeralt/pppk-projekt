@@ -1,6 +1,7 @@
 package hr.algebra.dao.sql;
 
 import hr.algebra.dao.Repository;
+import hr.algebra.model.Job;
 import hr.algebra.model.Person;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -63,6 +64,53 @@ public class HibernateRepository implements Repository {
             EntityManager entityManager =  entityManagerWrapper.get();
             
             return entityManager.createNamedQuery(HibernateFactory.SELECT_PEOPLE).getResultList();
+        }
+    }
+
+    @Override
+    public List<Job> getJobs() throws Exception {
+        try (EntityManagerWrapper entityManager = HibernateFactory.getEntityManager()) {
+            return entityManager.get().createNamedQuery(HibernateFactory.SELECT_JOB).getResultList();
+        } 
+    }
+
+    @Override
+    public int addJob(Job data) throws Exception {
+        try (EntityManagerWrapper entityManager = HibernateFactory.getEntityManager()) {
+            EntityManager em = entityManager.get();
+            em.getTransaction().begin();
+            Job job = new Job(data);
+            em.persist(job);
+            em.getTransaction().commit();
+            return job.getIDJob();
+        }
+    }
+
+    @Override
+    public void deleteJob(Job job) throws Exception {
+        try (EntityManagerWrapper entityManager = HibernateFactory.getEntityManager()) {
+            EntityManager em = entityManager.get();
+            em.getTransaction().begin();
+            em.remove(em.contains(job) ? job : em.merge(job));
+            em.getTransaction().commit();
+        }
+    }
+
+    @Override
+    public Job getJob(int idJob) throws Exception {
+        try (EntityManagerWrapper entityManager = HibernateFactory.getEntityManager()) {
+            EntityManager em = entityManager.get();
+            return em.find(Job.class, idJob);
+        }
+    }
+
+    @Override
+    public void updateJob(Job job) throws Exception {
+        try (EntityManagerWrapper entityManager = HibernateFactory.getEntityManager()) {
+            EntityManager em = entityManager.get();
+            em.getTransaction().begin();
+            em.find(Job.class, job.getIDJob()).updateDetails(job);
+            em.getTransaction().commit();            
         }
     }
 }

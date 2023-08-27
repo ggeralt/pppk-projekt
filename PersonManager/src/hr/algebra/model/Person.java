@@ -47,6 +47,9 @@ public class Person implements Serializable {
     @Lob
     @Column(name = "Picture")
     private byte[] picture;
+    @Basic(optional = false)
+    @Column(name = "JobID")
+    private int jobID;
 
     public Person() {
     }
@@ -55,12 +58,13 @@ public class Person implements Serializable {
         this.iDPerson = iDPerson;
     }
 
-    public Person(Integer iDPerson, String firstName, String lastName, int age, String email) {
+    public Person(Integer iDPerson, String firstName, String lastName, int age, String email, int jobID) {
         this.iDPerson = iDPerson;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.email = email;
+        this.jobID = jobID;
     }
     
     public Person(Person data) {
@@ -114,6 +118,14 @@ public class Person implements Serializable {
     public void setPicture(byte[] picture) {
         this.picture = picture;
     }
+    
+    public int getJobID() {
+        return jobID;
+    }
+
+    public void setJobID(int jobID) {
+        this.jobID = jobID;
+    }
 
     public void updateDetails(Person data) {
         firstName = data.firstName;
@@ -121,6 +133,7 @@ public class Person implements Serializable {
         age = data.age;
         email = data.email;
         picture = data.picture;
+        jobID = data.jobID;
     }
 
     @Override

@@ -4,7 +4,7 @@
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>hr.algebra.model.Person</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://DESKTOP-PK3DC6Q:1433;databaseName=PeopleManager;integratedSecurity=false;trustServerCertificate=true;"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://DESKTOP-PK3DC6Q:1433;databaseName=NewPeopleManager;integratedSecurity=false;trustServerCertificate=true;"/>
       <property name="javax.persistence.jdbc.user" value="sa"/>
       <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
       <property name="javax.persistence.jdbc.password" value="sql"/>

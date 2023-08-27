@@ -14,7 +14,7 @@ public class PersonViewModel {
     
     public PersonViewModel(Person person) {
         if (person == null) {
-            person = new Person(0, "", "", 0, "");
+            person = new Person(0, "", "", 0, "", 0);
         }
         
         this.person = person;
@@ -46,5 +46,9 @@ public class PersonViewModel {
     
     public ObjectProperty<byte[]> getPictureProperty() {
         return new SimpleObjectProperty<>(person.getPicture());
+    }
+    
+    public IntegerProperty getJobProperty() {
+        return new SimpleIntegerProperty(person.getJobID());
     }
 }
