@@ -5,11 +5,36 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PeopleManager.View"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="500" d:DesignWidth="800"
       Title="EditPersonPage">
 
     <Grid Background="{StaticResource GradientBackground}"
           x:Name="GridContainer">
-        
+        <Border
+            x:Name="PictureBorder"
+            BorderBrush="White"
+            BorderThickness="0.3"
+            Height="300" Margin="500,75,48,75">
+            <Image
+                x:Name="Picture"
+                Stretch="Uniform"
+                Source="{Binding Image}" />
+        </Border>
+        <Label Foreground="White" Content="First name" HorizontalAlignment="Left" Margin="33,81,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbFirstName" Text="{Binding FirstName}" HorizontalAlignment="Left" Margin="96,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="375"/>
+        <Label Foreground="White" Content="Last name" HorizontalAlignment="Left" Margin="33,113,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbLastName" Text="{Binding LastName}" HorizontalAlignment="Left" Margin="96,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="375"/>
+        <Label Foreground="White" Content="Age" HorizontalAlignment="Left" Margin="33,147,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbAge" Text="{Binding Age}" Tag="Int" HorizontalAlignment="Left" Margin="400,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="71"/>
+        <Label Foreground="White" Content="Email" HorizontalAlignment="Left" Margin="33,179,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbEmail" Text="{Binding Email}" Tag="Email" HorizontalAlignment="Left" Margin="96,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="375"/>
+        <Label Foreground="White" Content="Subject" HorizontalAlignment="Left" Margin="28,215,0,0" VerticalAlignment="Top" Height="50" Width="63"/>
+        <ComboBox x:Name="cbJobs" HorizontalAlignment="Left" Margin="96,217,0,0" VerticalAlignment="Top" Width="375"/>
+        <Button x:Name="btnBack" Click="BtnBack_Click" BorderThickness="0" Background="Transparent" HorizontalAlignment="Left" Margin="33,36,0,0" VerticalAlignment="Top" Width="32" Height="27">
+            <Image 
+                Source="/Asset/back.png" />
+        </Button>
+        <Button x:Name="btnCommit" Click="BtnCommit_Click" Foreground="White" Background="Black" Content="Commit" HorizontalAlignment="Left" Margin="33,260,0,0" VerticalAlignment="Top" Height="43" Width="92"/>
+        <Button x:Name="btnUpload" Click="BtnUpload_Click" Foreground="White" Background="Orange" Content="Upload" HorizontalAlignment="Left" Margin="385,255,0,0" VerticalAlignment="Top" Height="43" Width="92"/>
     </Grid>
 </local:FramedPage>

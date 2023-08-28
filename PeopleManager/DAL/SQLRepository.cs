@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace PeopleManager.DAL
 {
-    internal class SQLRepository : IRepository
+    internal class SQLRepository : IRepository<Person>
     {
         private const string IDPersonParameter = "@idPerson";
         private const string FirstNameParameter = "@firstname";
@@ -18,20 +18,21 @@ namespace PeopleManager.DAL
         private const string PictureParameter = "@picture";
         private static string cs = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
 
-        public void AddPerson(Person person)
+        public void Add(Person person)
         {
             using (SqlConnection sqlConnection = new SqlConnection(cs))
             {
                 sqlConnection.Open();
                 using (SqlCommand sqlCommand = sqlConnection.CreateCommand())
                 {
-                    sqlCommand.CommandText = MethodBase.GetCurrentMethod().Name;
+                    sqlCommand.CommandText = MethodBase.GetCurrentMethod().Name + nameof(Person);
                     sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
                     sqlCommand.Parameters.AddWithValue(nameof(Person.FirstName), person.FirstName);
                     sqlCommand.Parameters.AddWithValue(nameof(Person.LastName), person.LastName);
                     sqlCommand.Parameters.AddWithValue(nameof(Person.Age), person.Age);
                     sqlCommand.Parameters.AddWithValue(nameof(Person.Email), person.Email);
+                    sqlCommand.Parameters.AddWithValue(nameof(Person.JobID), person.JobID);
 
                     sqlCommand.Parameters.Add(new SqlParameter(
                         nameof(Person.Picture), 
@@ -55,14 +56,14 @@ namespace PeopleManager.DAL
             }
         }
 
-        public void DeletePerson(Person person)
+        public void Delete(Person person)
         {
             using (SqlConnection sqlConnection = new SqlConnection(cs))
             {
                 sqlConnection.Open();
                 using (SqlCommand sqlCommand = sqlConnection.CreateCommand())
                 {
-                    sqlCommand.CommandText = MethodBase.GetCurrentMethod().Name;
+                    sqlCommand.CommandText = MethodBase.GetCurrentMethod().Name + nameof(Person);
                     sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
                     sqlCommand.Parameters.AddWithValue(nameof(Person.IDPerson), person.IDPerson);
@@ -72,7 +73,7 @@ namespace PeopleManager.DAL
             }
         }
 
-        public IList<Person> GetPeople()
+        public IList<Person> Get()
         {
             IList<Person> people = new List<Person>();
 
@@ -81,7 +82,7 @@ namespace PeopleManager.DAL
                 sqlConnection.Open();
                 using (SqlCommand sqlCommand = sqlConnection.CreateCommand())
                 {
-                    sqlCommand.CommandText = MethodBase.GetCurrentMethod().Name;
+                    sqlCommand.CommandText = MethodBase.GetCurrentMethod().Name + "People";
                     sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
                     using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
@@ -97,14 +98,14 @@ namespace PeopleManager.DAL
             return people;
         }
 
-        public Person GetPerson(int idPerson)
+        public Person Get(int idPerson)
         {
             using (SqlConnection sqlConnection = new SqlConnection(cs))
             {
                 sqlConnection.Open();
                 using (SqlCommand sqlCommand = sqlConnection.CreateCommand())
                 {
-                    sqlCommand.CommandText = MethodBase.GetCurrentMethod().Name;
+                    sqlCommand.CommandText = MethodBase.GetCurrentMethod().Name + nameof(Person);
                     sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
                     sqlCommand.Parameters.AddWithValue(nameof(Person.IDPerson), idPerson);
@@ -121,14 +122,14 @@ namespace PeopleManager.DAL
             throw new Exception("Wrong person ID.");
         }
 
-        public void UpdatePerson(Person person)
+        public void Update(Person person)
         {
             using (SqlConnection sqlConnection = new SqlConnection(cs))
             {
                 sqlConnection.Open();
                 using (SqlCommand sqlCommand = sqlConnection.CreateCommand())
                 {
-                    sqlCommand.CommandText = MethodBase.GetCurrentMethod().Name;
+                    sqlCommand.CommandText = MethodBase.GetCurrentMethod().Name + nameof(Person);
                     sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
                     sqlCommand.Parameters.AddWithValue(nameof(Person.IDPerson), person.IDPerson);
@@ -136,6 +137,7 @@ namespace PeopleManager.DAL
                     sqlCommand.Parameters.AddWithValue(nameof(Person.LastName), person.LastName);
                     sqlCommand.Parameters.AddWithValue(nameof(Person.Age), person.Age);
                     sqlCommand.Parameters.AddWithValue(nameof(Person.Email), person.Email);
+                    sqlCommand.Parameters.AddWithValue(nameof(Person.JobID), person.JobID);
                     
                     sqlCommand.Parameters.Add(new SqlParameter(
                         nameof(Person.Picture),

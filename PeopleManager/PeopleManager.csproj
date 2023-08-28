@@ -56,19 +56,37 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="EditJobPage.xaml.cs">
+      <DependentUpon>EditJobPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DAL\IRepository.cs" />
+    <Compile Include="DAL\JobRepository.cs" />
     <Compile Include="DAL\RepositoryFactory.cs" />
     <Compile Include="DAL\SQLRepository.cs" />
     <Compile Include="EditPersonPage.xaml.cs">
       <DependentUpon>EditPersonPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ListJobsPage.xaml.cs">
+      <DependentUpon>ListJobsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ListPeoplePage.xaml.cs">
       <DependentUpon>ListPeoplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Job.cs" />
     <Compile Include="Utility\ImageUtilities.cs" />
+    <Compile Include="Utility\ValidationUtilities.cs" />
+    <Compile Include="ViewModel\JobViewModel.cs" />
     <Compile Include="ViewModel\PersonViewModel.cs" />
     <Compile Include="View\FramedPage.cs" />
+    <Page Include="EditJobPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EditPersonPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ListJobsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

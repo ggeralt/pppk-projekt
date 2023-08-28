@@ -1,14 +1,13 @@
-﻿using PeopleManager.Model;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace PeopleManager.DAL
 {
-    public interface IRepository
+    public interface IRepository<T>
     {
-        void AddPerson(Person person);
-        void UpdatePerson(Person person);
-        void DeletePerson(Person person);
-        IList<Person> GetPeople();
-        Person GetPerson(int idPerson);
+        void Add(T item);
+        void Update(T item);
+        void Delete(T item);
+        IList<T> Get();
+        T Get(int id);
     }
 }

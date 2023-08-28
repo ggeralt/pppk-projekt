@@ -25,15 +25,29 @@ namespace PeopleManager
 
         private void BtnAdd_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            Frame.Navigate(new EditPersonPage(PersonViewModel));
+            Frame.Navigate(new EditPersonPage(PersonViewModel)
+            {
+                Frame = Frame
+            });
         }
 
         private void BtnEdit_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             if (lvPeople.SelectedItems != null)
             {
-                Frame.Navigate(new EditPersonPage(PersonViewModel, lvPeople.SelectedItem as Person));
+                Frame.Navigate(new EditPersonPage(PersonViewModel, lvPeople.SelectedItem as Person)
+                {
+                    Frame = Frame
+                });
             }
+        }
+
+        private void BtnJobs_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Frame.Navigate(new ListJobsPage(new JobViewModel()) 
+            { 
+                Frame = Frame 
+            });
         }
     }
 }

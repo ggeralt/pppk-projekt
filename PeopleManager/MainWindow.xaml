@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PeopleManager"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Person Manager" Height="450" Width="600">
+        Title="Person Manager" Height="500" Width="800">
     <Grid>
         <Frame
             x:Name="Frame"

@@ -11,6 +11,7 @@ namespace PeopleManager.Model
         public int Age { get; set; }
         public string Email { get; set; }
         public byte[] Picture { get; set; }
+        public int JobID { get; set; }
         public BitmapImage Image { get => ImageUtilities.ByteArrayToBitmapImage(Picture); }
     }
 }

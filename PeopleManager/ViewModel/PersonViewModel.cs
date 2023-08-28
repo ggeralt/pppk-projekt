@@ -8,10 +8,12 @@ namespace PeopleManager.ViewModel
     public class PersonViewModel
     {
         public ObservableCollection<Person> People { get; }
+        private SQLRepository sqlRepository;
 
         public PersonViewModel()
         {
-            People = new ObservableCollection<Person>(RepositoryFactory.GetRepository().GetPeople());
+            sqlRepository = RepositoryFactory.GetRepositoryInstance<Person, SQLRepository>();
+            People = new ObservableCollection<Person>(sqlRepository.Get());
             People.CollectionChanged += People_CollectionChanged;
         }
 
@@ -20,13 +22,13 @@ namespace PeopleManager.ViewModel
             switch (e.Action)
             {
                 case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
-                    RepositoryFactory.GetRepository().AddPerson(People[e.NewStartingIndex]);
+                    sqlRepository.Add(People[e.NewStartingIndex]);
                     break;
                 case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
-                    RepositoryFactory.GetRepository().DeletePerson(e.OldItems.OfType<Person>().ToList()[0]);
+                    sqlRepository.Delete(e.OldItems.OfType<Person>().ToList()[0]);
                     break;
                 case System.Collections.Specialized.NotifyCollectionChangedAction.Replace:
-                    RepositoryFactory.GetRepository().UpdatePerson(e.NewItems.OfType<Person>().ToList()[0]);
+                    sqlRepository.Update(e.NewItems.OfType<Person>().ToList()[0]);
                     break;
             }
         }

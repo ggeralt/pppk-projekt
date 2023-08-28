@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PeopleManager.View"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="600"
+      d:DesignHeight="500" d:DesignWidth="800"
       Title="ListPeoplePage">
 
     <Grid Background="{StaticResource GradientBackground}" >
@@ -67,17 +67,21 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="BtnAdd" 
+        <Button x:Name="btnAdd" 
                 Foreground="WhiteSmoke" 
                 Background="Green" 
                 Content="Add" HorizontalAlignment="Left" Margin="385,411,0,0" VerticalAlignment="Top" Height="29" Width="100" Click="BtnAdd_Click" />
-        <Button x:Name="BtnEdit" 
+        <Button x:Name="btnEdit" 
                 Foreground="Black" 
                 Background="Yellow" 
                 Content="Edit" HorizontalAlignment="Left" Margin="490,411,0,0" VerticalAlignment="Top" Height="29" Width="100" Click="BtnEdit_Click"/>
-        <Button x:Name="BtnDelete" 
+        <Button x:Name="btnDelete" 
                 Foreground="WhiteSmoke" 
                 Background="Red" 
                 Content="Delete" HorizontalAlignment="Left" Margin="280,411,0,0" VerticalAlignment="Top" Height="29" Width="100" Click="BtnDelete_Click"/>
+        <Button x:Name="btnJobs" 
+            Foreground="Black" 
+            Background="LightCoral" 
+            Content="Jobs" HorizontalAlignment="Left" Margin="490,445,0,0" VerticalAlignment="Top" Height="29" Width="100" Click="BtnJobs_Click"/>
     </Grid>
 </local:FramedPage>
