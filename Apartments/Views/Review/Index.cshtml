@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Apartments.Review>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDReview)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Content)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApartmentID)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDReview)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApartmentID)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IDReview }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IDReview }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IDReview })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@Html.ActionLink("Apartments", "Index", "Apartment")

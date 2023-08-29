@@ -141,13 +141,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Apartment.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>NewModel.tt</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ApartmentController.cs" />
     <Compile Include="Controllers\FileController.cs" />
+    <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -166,9 +167,27 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="NewModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Review.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="UploadedFile.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>NewModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -209,12 +228,30 @@
     <Content Include="Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
     </Content>
+    <Content Include="NewModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>NewModel.Context.cs</LastGenOutput>
+      <DependentUpon>NewModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="NewModel.edmx.sql" />
+    <Content Include="NewModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>NewModel.cs</LastGenOutput>
+      <DependentUpon>NewModel.edmx</DependentUpon>
+    </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="NewModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>NewModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="NewModel.edmx.diagram">
+      <DependentUpon>NewModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -242,6 +279,11 @@
     <Content Include="Views\Apartment\Details.cshtml" />
     <Content Include="Views\Apartment\Edit.cshtml" />
     <Content Include="Views\Apartment\Index.cshtml" />
+    <Content Include="Views\Review\Create.cshtml" />
+    <Content Include="Views\Review\Delete.cshtml" />
+    <Content Include="Views\Review\Details.cshtml" />
+    <Content Include="Views\Review\Edit.cshtml" />
+    <Content Include="Views\Review\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

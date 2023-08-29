@@ -42,6 +42,17 @@
             @Html.DisplayFor(model => model.Contact)
         </dd>
 
+        <dt>
+            @Html.Label("Review")
+        </dt>
+
+        @foreach (var review in Model.Reviews)
+        {
+            <dd>
+                <span>@review</span>
+            </dd>
+        }
+
         @foreach (var uploadedFile in Model.UploadedFiles)
         {
             <dt>

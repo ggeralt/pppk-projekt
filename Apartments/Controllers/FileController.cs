@@ -4,7 +4,7 @@ namespace Apartments.Controllers
 {
     public class FileController : Controller
     {
-        private readonly ModelContainer modelContainer = new ModelContainer();
+        private readonly NewModelContainer modelContainer = new NewModelContainer();
 
         ~FileController()
         {

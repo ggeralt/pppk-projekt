@@ -19,6 +19,7 @@ namespace Apartments
         public Apartment()
         {
             this.UploadedFiles = new HashSet<UploadedFile>();
+            this.Reviews = new HashSet<Review>();
         }
     
         public int IDApartment { get; set; }
@@ -34,5 +35,7 @@ namespace Apartments
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UploadedFile> UploadedFiles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Review> Reviews { get; set; }
     }
 }

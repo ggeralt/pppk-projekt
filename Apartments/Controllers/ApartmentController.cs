@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using System.Data.Entity;
-using System.Collections;
 using System.Web;
 using System.Collections.Generic;
 
@@ -9,7 +8,7 @@ namespace Apartments.Controllers
 {
     public class ApartmentController : Controller
     {
-        private readonly ModelContainer modelContainer = new ModelContainer();
+        private readonly NewModelContainer modelContainer = new NewModelContainer();
 
         ~ApartmentController()
         {
@@ -36,12 +35,14 @@ namespace Apartments.Controllers
 
         // POST: Apartment/Create
         [HttpPost]
-        public ActionResult Create(Apartment apartment, IEnumerable<HttpPostedFileBase> files)
+        public ActionResult Create(Apartment apartment, IEnumerable<HttpPostedFileBase> files, string reviewContent)
         {
             if (ModelState.IsValid)
             {
                 apartment.UploadedFiles = new List<UploadedFile>();
+                apartment.Reviews = new List<Review>();
                 AddFiles(apartment, files);
+                AddReview(apartment, reviewContent);
 
                 modelContainer.Apartments.Add(apartment);
                 modelContainer.SaveChanges();
@@ -66,7 +67,8 @@ namespace Apartments.Controllers
             {
                 nameof(Apartment.Address),
                 nameof(Apartment.City),
-                nameof(Apartment.Contact)
+                nameof(Apartment.Contact),
+                nameof(Apartment.UploadedFiles) // newly added
             }))
             {
                 AddFiles(apartment, files);
@@ -93,6 +95,9 @@ namespace Apartments.Controllers
             modelContainer.UploadedFiles
                 .RemoveRange(modelContainer.UploadedFiles
                     .Where(f => f.ApartmentID == id));
+            modelContainer.Reviews
+                .RemoveRange(modelContainer.Reviews
+                    .Where(r => r.ApartmentID == id));
             modelContainer.Apartments
                 .Remove(modelContainer.Apartments
                     .Find(id));
@@ -110,6 +115,7 @@ namespace Apartments.Controllers
 
             Apartment apartment = modelContainer.Apartments
                 .Include(a => a.UploadedFiles)
+                .Include(p => p.Reviews)
                 .SingleOrDefault(a => a.IDApartment == id);
 
             if (apartment == null)
@@ -140,6 +146,20 @@ namespace Apartments.Controllers
                     apartment.UploadedFiles.Add(picture);
                 }
             }
+        }
+
+        private void AddReview(Apartment apartment, string reviewContent)
+        {
+            if (string.IsNullOrEmpty(reviewContent))
+            {
+                return;
+            }
+
+            apartment.Reviews.Add(new Review()
+            {
+                Content = reviewContent,
+                ApartmentID = apartment.IDApartment
+            });
         }
     }
 }
