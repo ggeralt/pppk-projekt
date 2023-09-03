@@ -6,7 +6,7 @@ namespace BlobStorage.DAO
 {
     static class Repository
     {
-        private const string ContainerName = "container-name";
+        private const string ContainerName = "Blob";
         private static readonly string cs = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
 
         private static readonly Lazy<BlobContainerClient> container = new Lazy<BlobContainerClient>(() 
