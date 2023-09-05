@@ -1,7 +1,7 @@
 ﻿using Azure.Storage.Blobs.Models;
 using BlobStorage.ViewModel;
+using Microsoft.Win32;
 using System.Windows;
-using System.Windows.Forms;
 
 namespace BlobStorage
 {
@@ -51,8 +51,9 @@ namespace BlobStorage
         private async void BtnUpload_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new OpenFileDialog();
+            dialog.Filter = "Image Files|*.jpeg;*.tiff;*.png;*.svg;*.gif";
 
-            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (dialog.ShowDialog() == true)
             {
                 await itemsViewModel.UploadAsync(dialog.FileName, cbDirectories.Text);
             }
@@ -72,7 +73,7 @@ namespace BlobStorage
                 FileName = blobItem.Name.Substring(blobItem.Name.LastIndexOf(ItemsViewModel.ForwardSlash) + 1)
             };
 
-            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (dialog.ShowDialog() == true)
             {
                 await itemsViewModel.DownloadAsync(blobItem, dialog.FileName);
             }
